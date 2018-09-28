@@ -16,4 +16,14 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
     }
+    
+    @RequestMapping("/vtest")
+    public EDSAPIVtest vtest() {
+    	return new EDSAPIVtest("GetVtest");
+    }
+    
+//    @RequestMapping("/auth")
+//    public EDSAPIAuth auth() {
+//    	return new EDSAPIAuth("PostAuth");
+//    }
 }
