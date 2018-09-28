@@ -19,11 +19,16 @@ public class GreetingController {
     
     @RequestMapping("/vtest")
     public EDSAPIVtest vtest() {
-    	return new EDSAPIVtest("GetVtest");
+    	return new EDSAPIVtest("");
     }
     
-//    @RequestMapping("/auth")
-//    public EDSAPIAuth auth() {
-//    	return new EDSAPIAuth("PostAuth");
+    @RequestMapping("/auth")
+    public EDSAPIAuth auth() {
+    	return new EDSAPIAuth("");
+    }
+    
+//    @RequestMapping("/session")
+//    public EDSAPICreateSession session() {
+//    	return new EDSAPICreateSession("GetSession");
 //    }
 }
