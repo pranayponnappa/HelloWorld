@@ -1,5 +1,6 @@
 package com.ebsco.helloworld;
 
+import java.util.Dictionary;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,14 +24,15 @@ public class GreetingController {
     }
     
     @RequestMapping("/auth")
-    public String auth(@RequestParam(value="UserId", defaultValue="logigearqa!") String userId,
+    public Dictionary<String, String> auth(@RequestParam(value="UserId", defaultValue="logigearqa!") String userId,
     		@RequestParam(value="password", defaultValue="password") String password) throws Exception {
     	EDSAPIAuth auth = new EDSAPIAuth(userId, password);
     	return auth.postAuth();
     }
     
-//    @RequestMapping("/session")
-//    public EDSAPICreateSession session() {
-//    	return new EDSAPICreateSession("GetSession");
-//    }
+    @RequestMapping("/session")
+    public Dictionary<String, String> session(@RequestParam(value="profileId", defaultValue="edsapi") String profileId) throws Exception {
+    	EDSAPICreateSession createSession = new EDSAPICreateSession(profileId);
+    	return createSession.getSession();
+    }
 }
