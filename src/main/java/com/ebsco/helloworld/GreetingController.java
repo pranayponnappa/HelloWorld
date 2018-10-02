@@ -23,8 +23,10 @@ public class GreetingController {
     }
     
     @RequestMapping("/auth")
-    public EDSAPIAuth auth() {
-    	return new EDSAPIAuth("");
+    public String auth(@RequestParam(value="UserId", defaultValue="logigearqa!") String userId,
+    		@RequestParam(value="password", defaultValue="password") String password) throws Exception {
+    	EDSAPIAuth auth = new EDSAPIAuth(userId, password);
+    	return auth.postAuth();
     }
     
 //    @RequestMapping("/session")

@@ -12,21 +12,15 @@ import org.w3c.dom.Document;
 
 public class EDSAPIAuth {
 		
-	public String response;
+	public String userId;
+	public String password;
 	
-	public String getResponse() {
-		try {
-			return postAuth();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+
 	
-    public EDSAPIAuth(String response) {
+    public EDSAPIAuth(String userId, String password) {
         
-        this.response = response;
+        this.userId = userId;
+        this.password = password;
     }
 	
 	public String postAuth() throws Exception {
@@ -34,8 +28,8 @@ public class EDSAPIAuth {
 			URL url = new URL("http://edsapi.ads.ade.epnet.com/authservice/rest/uidauth");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			String doc = "<UIDAuthRequestMessage xmlns=\"http://www.ebscohost.com/services/public/AuthService/Response/2012/06/01\" xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n" + 
-					"  <UserId>logigearqa!</UserId>\r\n" + 
-					"  <Password>password</Password>\r\n" + 
+					"  <UserId>"+userId+"</UserId>\r\n" + 
+					"  <Password>"+password+"</Password>\r\n" + 
 					"  <InterfaceId>edsapi_console</InterfaceId>\r\n" + 
 					"</UIDAuthRequestMessage>";
 			try {
