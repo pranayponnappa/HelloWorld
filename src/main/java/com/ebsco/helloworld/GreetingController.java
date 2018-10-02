@@ -19,8 +19,9 @@ public class GreetingController {
     }
     
     @RequestMapping("/vtest")
-    public EDSAPIVtest vtest() {
-    	return new EDSAPIVtest("");
+    public String vtest() throws Exception {
+    	EDSAPIVtest vtest = new EDSAPIVtest();
+    	return vtest.GetVTest();
     }
     
     @RequestMapping("/auth")

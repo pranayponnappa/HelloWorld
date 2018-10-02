@@ -5,25 +5,6 @@ import java.net.*;
 
 public class EDSAPIVtest {
 	
-	public String response;
-	
-	public String getResponse() {
-		try {
-			return GetVTest();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-    public EDSAPIVtest(String response) {
-        
-        this.response = response;
-    }
-
-
-	
 	public String GetVTest() throws Exception {
 		
 		URL url = new URL("http://edsapi.ads.ade.epnet.com/edsapi/private/vtest?level=2&version=2");
