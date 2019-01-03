@@ -33,11 +33,4 @@ public class EDSAPIController {
     	EDSAPISearch search = new EDSAPISearch(searchTerm);
     	return search.getSearch();
     }
-    
-    @RequestMapping("/uidauth")
-    public Dictionary<String, String> uidauth(@RequestParam(value="UserId", defaultValue="logigearqa!") String userId,
-    		@RequestParam(value="password", defaultValue="password") String password) throws Exception {
-    	MeerkatUIDAuth auth = new MeerkatUIDAuth(userId, password);
-    	return auth.postAuth();
-    }
 }
