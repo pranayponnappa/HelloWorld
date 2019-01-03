@@ -1,31 +1,22 @@
 package com.ebsco.helloworld;
 
 import java.util.Dictionary;
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
 
 @RestController
-public class GreetingController {
+public class EDSAPIController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
-    }
-    
     @RequestMapping("/vtest")
     public String vtest() throws Exception {
     	EDSAPIVtest vtest = new EDSAPIVtest();
     	return vtest.GetVTest();
     }
-    
-    @RequestMapping("/auth")
-    public Dictionary<String, String> auth(@RequestParam(value="UserId", defaultValue="logigearqa!") String userId,
+
+    @RequestMapping("/edsapiauth")
+    public Dictionary<String, String> edsapiauth(@RequestParam(value="UserId", defaultValue="logigearqa!") String userId,
     		@RequestParam(value="password", defaultValue="password") String password) throws Exception {
     	EDSAPIAuth auth = new EDSAPIAuth(userId, password);
     	return auth.postAuth();
@@ -35,5 +26,18 @@ public class GreetingController {
     public Dictionary<String, String> session(@RequestParam(value="profileId", defaultValue="edsapi") String profileId) throws Exception {
     	EDSAPICreateSession createSession = new EDSAPICreateSession(profileId);
     	return createSession.getSession();
+    }
+    
+    @RequestMapping("/search")
+    public Document search(@RequestParam(value="searchTerm", defaultValue="search") String searchTerm) throws Exception {
+    	EDSAPISearch search = new EDSAPISearch(searchTerm);
+    	return search.getSearch();
+    }
+    
+    @RequestMapping("/uidauth")
+    public Dictionary<String, String> uidauth(@RequestParam(value="UserId", defaultValue="logigearqa!") String userId,
+    		@RequestParam(value="password", defaultValue="password") String password) throws Exception {
+    	MeerkatUIDAuth auth = new MeerkatUIDAuth(userId, password);
+    	return auth.postAuth();
     }
 }
