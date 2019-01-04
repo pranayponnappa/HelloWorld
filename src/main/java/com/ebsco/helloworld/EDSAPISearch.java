@@ -25,7 +25,10 @@ public class EDSAPISearch {
 		String authToken = sessionResponse.get("AuthToken");
 		String sessionToken = sessionResponse.get("SessionToken");
 		
-		URL url = new URL("http://edsapi.ads.ade.epnet.com/edsapi/rest/Search?query=cats&searchmode=all&resultsperpage=20&pagenumber=1&sort=relevance&highlight=y&includefacets=y&view=brief&autosuggest=n&autocorrect=n&includeimagequickview=n");
+		URL url = new URL("http://edsapi.ads.ade.epnet.com/edsapi/rest/Search?query=" 
+				+ searchTerm
+				+ "&searchmode=all&resultsperpage=20&pagenumber=1&sort=relevance&"
+				+ "highlight=y&includefacets=y&view=brief&autosuggest=n&autocorrect=n&includeimagequickview=n");
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		try {
 			con.setRequestMethod("GET");
